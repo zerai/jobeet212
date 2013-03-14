@@ -1,0 +1,30 @@
+zlab_job:
+    pattern:  /
+    defaults: { _controller: "ZlabJobeetBundle:Job:index" }
+
+zlab_job_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ZlabJobeetBundle:Job:show" }
+
+zlab_job_new:
+    pattern:  /new
+    defaults: { _controller: "ZlabJobeetBundle:Job:new" }
+
+zlab_job_create:
+    pattern:  /create
+    defaults: { _controller: "ZlabJobeetBundle:Job:create" }
+    requirements: { _method: post }
+
+zlab_job_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ZlabJobeetBundle:Job:edit" }
+
+zlab_job_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ZlabJobeetBundle:Job:update" }
+    requirements: { _method: post }
+
+zlab_job_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ZlabJobeetBundle:Job:delete" }
+    requirements: { _method: post }

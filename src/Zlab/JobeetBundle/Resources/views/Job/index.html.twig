@@ -1,0 +1,38 @@
+{% extends 'ZlabJobeetBundle::layout.html.twig' %}
+
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('bundles/zlabjobeet/css/jobs.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block content %}
+
+<div id="jobs">
+    <table class="jobs">
+    {% for entity in entities %}
+        <tr class="{{ cycle(['even', 'odd'], loop.index) }}">
+            <td class="location">{{ entity.location }}</td>
+            
+            <td class="position">
+                <a href="{{ path('zlab_job_show', {'id' : entity.id}) }}">{{ entity.position }}
+            </td>
+
+            <td class="company">
+                {{ entity.company }}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+</div>
+
+
+
+<ul>
+    <li>
+        <a href="{{ path('zlab_job_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>
+{% endblock %}

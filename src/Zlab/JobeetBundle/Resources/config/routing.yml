@@ -1,3 +1,7 @@
 zlab_jobeet_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: ZlabJobeetBundle:Default:index }
+
+ZlabJobeetBundle_zlab_job:
+        resource: "@ZlabJobeetBundle/Resources/config/routing/job.yml"
+        prefix:   /job
