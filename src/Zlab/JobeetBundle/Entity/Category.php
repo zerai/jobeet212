@@ -37,6 +37,11 @@ class Category
         $this->jobs = new \Doctrine\Common\Collections\ArrayCollection();
         $this->category_affiliates = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
+    public function __toString()
+    {
+      return $this->getName();
+    }
     
     /**
      * Get id
