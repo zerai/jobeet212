@@ -1,6 +1,7 @@
 # src/Zlab/JobeetBundle/Resources/config/doctrine/Job.orm.yml
 Zlab\JobeetBundle\Entity\Job:
   type: entity
+  repositoryClass: Zlab\JobeetBundle\Repository\Jobrepository
   table: job
   id:
     id:
@@ -60,5 +61,5 @@ Zlab\JobeetBundle\Entity\Job:
         name: category_id
         referencedColumnName: id
   lifecycleCallbacks:
-    prePersist: [ setCreatedAtValue ]
+    prePersist: [ setCreatedAtValue, setExpiresAtValue ]
     preUpdate: [ setUpdatedAtValue ]
