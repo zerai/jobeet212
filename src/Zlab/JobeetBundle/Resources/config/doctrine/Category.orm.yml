@@ -1,6 +1,7 @@
 # src/Zlab/JobeetBundle/Resources/config/doctrine/Category.orm.yml
 Zlab\JobeetBundle\Entity\Category:
   type: entity
+  repositoryClass: Zlab\JobeetBundle\Repository\CategoryRepository
   table: category
   id:
     id:

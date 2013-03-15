@@ -4,6 +4,8 @@ namespace Zlab\JobeetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
+
 /**
  * Category
  */
@@ -28,6 +30,9 @@ class Category
      * @var \Doctrine\Common\Collections\Collection
      */
     private $category_affiliates;
+
+
+    private $active_jobs;
 
     /**
      * Constructor
@@ -140,5 +145,15 @@ class Category
     public function getCategoryAffiliates()
     {
         return $this->category_affiliates;
+    }
+
+    public function setActiveJobs($jobs)
+    {
+        $this->active_jobs = $jobs;
+    }
+
+    public function getActiveJobs()
+    {
+        return $this->active_jobs;
     }
 }

@@ -22,19 +22,17 @@ class JobController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        /*
-        $query = $em->createQuery(
-            'SELECT j FROM ZlabJobeetBundle:Job j WHERE j.expires_at > :date'
-            )->setParameter('date', date('Y-m-d H:i:s', time() - 86400 * 30));
+        
+        $categories = $em->getRepository('ZlabJobeetBundle:Category')->getWithJobs();
 
-        $entities = $query->getResult();
-        //$entities = $em->getRepository('ZlabJobeetBundle:Job')->findAll();
-        */
-
-        $entities = $em->getRepository('ZlabJobeetBundle:Job')->getActivejobs();
+        foreach ($categories as $category)
+        {
+            $category->setActiveJobs($em->getRepository('ZlabJobeetBundle:Job')->getActivejobs($category->getId(), 10));
+        }
+        //$entities = $em->getRepository('ZlabJobeetBundle:Job')->getActivejobs();
         
         return $this->render('ZlabJobeetBundle:Job:index.html.twig', array(
-            'entities' => $entities,
+            'categories' => $categories,
         ));
     }
 
@@ -46,7 +44,7 @@ class JobController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ZlabJobeetBundle:Job')->find($id);
+        $entity = $em->getRepository('ZlabJobeetBundle:Job')->getActivejob($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Job entity.');

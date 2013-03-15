@@ -7,32 +7,29 @@
 {% endblock %}
 
 {% block content %}
-
-<div id="jobs">
-    <table class="jobs">
-    {% for entity in entities %}
-        <tr class="{{ cycle(['even', 'odd'], loop.index) }}">
-            <td class="location">{{ entity.location }}</td>
-            
-            <td class="position">
-                <a href="{{ path('zlab_job_show', {'id' : entity.id, 'company': entity.companyslug, 'location': entity.locationslug, 'position': entity.positionslug }) }}">{{ entity.position }}
-            </td>
-
-            <td class="company">
-                {{ entity.company }}
-            </td>
-        </tr>
+  <div id="jobs">
+    {% for category in categories %}
+      <div>
+        <div class="category">
+          <div class="feed">
+            <a href="">Feed</a>
+          </div>
+          <h1>{{ category.name }}</h1>
+        </div>
+        <table class="jobs">
+          {% for entity in category.activejobs %}
+            <tr class="{{ cycle(['even', 'odd'], loop.index) }}">
+              <td class="location">{{ entity.location }}</td>
+              <td class="position">
+                <a href="{{ path('zlab_job_show', { 'id': entity.id, 'company': entity.companyslug, 'location': entity.locationslug, 'position': entity.positionslug }) }}">
+                  {{ entity.position }}
+                </a>
+              </td>
+              <td class="company">{{ entity.company }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
     {% endfor %}
-    </table>
-</div>
-
-
-
-<ul>
-    <li>
-        <a href="{{ path('zlab_job_new') }}">
-            Create a new entry
-        </a>
-    </li>
-</ul>
+  </div>
 {% endblock %}
