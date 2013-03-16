@@ -27,10 +27,12 @@ class JobController extends Controller
 
         foreach ($categories as $category)
         {
-            $category->setActiveJobs($em->getRepository('ZlabJobeetBundle:Job')->getActivejobs($category->getId(), 10));
+            $category->setActiveJobs($em->getRepository('ZlabJobeetBundle:Job')->getActivejobs($category->getId(), $this->container->getParameter('max_jobs_on_homepage'))); //echo $category->getId();exit;
+            $category->setMoreJobs($em->getRepository('ZlabJobeetBundle:Job')->countActiveJobs($category->getId()) - $this->container->getParameter('max_jobs_on_homepage'));
+            //var_dump($category->setActiveJobs($em->getRepository('ZlabJobeetBundle:Job')->getActivejob($category->getId(), 10))); die;
         }
-        //$entities = $em->getRepository('ZlabJobeetBundle:Job')->getActivejobs();
         
+         //var_dump($categories); die;
         return $this->render('ZlabJobeetBundle:Job:index.html.twig', array(
             'categories' => $categories,
         ));

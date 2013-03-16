@@ -6,5 +6,5 @@ ZlabJobeetBundle_zlab_job:
         resource: "@ZlabJobeetBundle/Resources/config/routing/job.yml"
         prefix:   /job
 zlabJobeetBundle_category:
-    pattern:  /category/{slug}
-    defaults: { _controller: ZlabJobeetBundle:Category:show }
+    pattern:  /category/{slug}/{page}
+    defaults: { _controller: ZlabJobeetBundle:Category:show, page: 1 }
